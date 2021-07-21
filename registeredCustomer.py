@@ -16,7 +16,6 @@ class RegisteredCustomer(Connection):
         return self._login_check(self.login, self.password, 'customer')
 
     def get_self_info(self, selector=''):
-        role = 'customer'
         if self.login_self():
             table = ('customer',)
             fields = ('*',)
@@ -27,7 +26,6 @@ class RegisteredCustomer(Connection):
         return result
 
     def create_order(self, data):
-        role = 'customer'
         if self.login_self():
             table = 'orders'
             result = self._postData(table, data)
@@ -36,7 +34,6 @@ class RegisteredCustomer(Connection):
         return result
 
     def delete_order(self, selector):
-        role = 'customer'
         if self.login_self():
             table = 'orders'
             selector = f"date_of_order = '{selector}'"
